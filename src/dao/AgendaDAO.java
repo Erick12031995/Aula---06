@@ -2,6 +2,7 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import ConnectionFactory.ConexaoBDAgenda;
 import model.Agenda;
@@ -62,6 +63,37 @@ public class AgendaDAO{
 	return agenda;
 	
    }
+    
+    public ArrayList<Agenda> findAll() {
+    	ArrayList<Agenda> listAgenda = new ArrayList<Agenda>();
+    	String sqlInsert = "SELECT * FROM tb_agenda" ;
+      try (Connection conn = ConexaoBDAgenda.obtemConexao();
+    		  PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
+         stm.execute();
+         try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					Agenda agenda = new Agenda();
+					
+					agenda.setId(rs.getInt("id"));
+					agenda.setNome(rs.getString("nome"));
+					agenda.setTelefone(rs.getString("telefone"));
+					agenda.setEndereco(rs.getString("endereco"));
+					agenda.setEmail(rs.getString("email"));
+					
+					listAgenda.add(agenda);
+					}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+      } 
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+	return listAgenda;
+	
+   }
+    
    public void excluir(Agenda agenda){
       String sqlDelete = "DELETE FROM tb_agenda WHERE id = ?";
       try(Connection conn = ConexaoBDAgenda.obtemConexao();

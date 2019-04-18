@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,8 +40,10 @@ public class ManterAgendaController extends HttpServlet {
 		AgendaService agendaS = new AgendaService();
 		agendaS.inserir(agenda);
 		agenda = agendaS.pesquisar(agenda.getId());
+		ArrayList<Agenda> lista = agendaS.findAll();
 		
-		request.setAttribute("agenda.jsp", agenda);
+		request.setAttribute("lista", lista);
+		request.setAttribute("agenda", agenda);
 		
 		RequestDispatcher view = request.getRequestDispatcher("Agenda.jsp");
 		view.forward(request, response);

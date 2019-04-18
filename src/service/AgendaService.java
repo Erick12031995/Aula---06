@@ -1,5 +1,7 @@
 package service;
 
+import java.util.ArrayList;
+
 import dao.AgendaDAO;
 import model.Agenda;
 
@@ -21,5 +23,8 @@ public class AgendaService {
 	}
 	public Agenda pesquisar(int id) {
 		return dao.pesquisar(id);
+	}
+	public ArrayList<Agenda> findAll() {
+		return dao.findAll();
 	}
 }
