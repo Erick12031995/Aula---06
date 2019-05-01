@@ -4,15 +4,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import ConnectionFactory.ConexaoBDAgenda;
 import model.Agenda;
 
 public class AgendaDAO{
 
-
    public void inserir(Agenda to){
       String sqlInsert = "INSERT INTO tb_agenda(nome, telefone, endereco, email) VALUES (?, ?, ?, ?)";
-      try(Connection conn = ConexaoBDAgenda.obtemConexao();
+      try(Connection conn = ConnectionFactory.obtemConexaoDBAgenda();
     		  PreparedStatement stm = conn.prepareStatement(sqlInsert);){
          stm.setString(1, to.getNome());
          stm.setString(2, to.getTelefone());
@@ -36,7 +34,7 @@ public class AgendaDAO{
     	Agenda agenda = new Agenda();
     	String sqlInsert = 
          "SELECT * FROM tb_agenda WHERE id = ?";
-      try (Connection conn = ConexaoBDAgenda.obtemConexao();
+      try (Connection conn = ConnectionFactory.obtemConexaoDBAgenda();
     		  PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
          stm.setInt(1, id);
          stm.execute();
@@ -64,11 +62,42 @@ public class AgendaDAO{
 	
    }
     
-    public ArrayList<Agenda> findAll() {
+    public ArrayList<Agenda> listarContatos() {
     	ArrayList<Agenda> listAgenda = new ArrayList<Agenda>();
-    	String sqlInsert = "SELECT * FROM tb_agenda" ;
-      try (Connection conn = ConexaoBDAgenda.obtemConexao();
-    		  PreparedStatement stm = conn.prepareStatement(sqlInsert);) {
+    	String sql = "SELECT * FROM tb_agenda" ;
+      try (Connection conn = ConnectionFactory.obtemConexaoDBAgenda();
+    		  PreparedStatement stm = conn.prepareStatement(sql);) {
+         stm.execute();
+         try (ResultSet rs = stm.executeQuery();) {
+				while (rs.next()) {
+					Agenda agenda = new Agenda();
+					
+					agenda.setId(rs.getInt("id"));
+					agenda.setNome(rs.getString("nome"));
+					agenda.setTelefone(rs.getString("telefone"));
+					agenda.setEndereco(rs.getString("endereco"));
+					agenda.setEmail(rs.getString("email"));
+					
+					listAgenda.add(agenda);
+					}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+      } 
+      catch (Exception e) {
+         e.printStackTrace();
+      }
+	return listAgenda;
+	
+   }
+    
+    public ArrayList<Agenda> listarContato(String chave) {
+    	ArrayList<Agenda> listAgenda = new ArrayList<Agenda>();
+    	String sql = "SELECT * FROM tb_agenda where upper(nome) like ?" ;
+      try (Connection conn = ConnectionFactory.obtemConexaoDBAgenda();
+    		  PreparedStatement stm = conn.prepareStatement(sql);) {
+    	 stm.setString(1, "%" + chave.toUpperCase() + "%");
          stm.execute();
          try (ResultSet rs = stm.executeQuery();) {
 				while (rs.next()) {
@@ -96,7 +125,7 @@ public class AgendaDAO{
     
    public void excluir(Agenda agenda){
       String sqlDelete = "DELETE FROM tb_agenda WHERE id = ?";
-      try(Connection conn = ConexaoBDAgenda.obtemConexao();
+      try(Connection conn = ConnectionFactory.obtemConexaoDBAgenda();
     		  PreparedStatement stm = conn.prepareStatement(sqlDelete);){
          stm.setInt(1, agenda.getId());
          stm.execute();
@@ -109,7 +138,7 @@ public class AgendaDAO{
    	public void atualizar(Agenda agenda) {
 		String sqlUpdate = "UPDATE tb_agenda SET nome = ?, telefone = ?, endereco = ? WHERE email = ?";
 
-		try (Connection conn = ConexaoBDAgenda.obtemConexao();
+		try (Connection conn = ConnectionFactory.obtemConexaoDBAgenda();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
          stm.setString(1, agenda.getNome());
          stm.setString(2, agenda.getTelefone());
