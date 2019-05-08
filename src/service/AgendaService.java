@@ -14,8 +14,8 @@ public class AgendaService {
 	public void inserir(Agenda agenda) {
 		dao.inserir(agenda);
 	}
-	public void excluir(Agenda agenda) {
-		dao.excluir(agenda);
+	public void excluir(int id) {
+		dao.excluir(id);
 	}
 	public void atualizar(Agenda agenda) {
 		dao.atualizar(agenda);

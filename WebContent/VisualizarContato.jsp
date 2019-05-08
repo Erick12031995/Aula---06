@@ -28,7 +28,7 @@
                             </div>
                             <div class="modal-footer">
                                 <form action="CadastroAgenda.do" method="post">
-                                    <input type="hidden" name="id" value="${contato }" />
+                                    <input type="hidden" name="id" value="${contato.id }" />
                                     <button type="submit" class="btn btn-primary" name="acao" value="Excluir">Sim</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
                                 </form>

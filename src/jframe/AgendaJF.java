@@ -129,7 +129,7 @@ public class AgendaJF extends JFrame implements ActionListener{
          if(e.getSource()==excluir){
         	int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID"));
             Agenda agenda= new Agenda(id);
-            agendaService.excluir(agenda);
+            agendaService.excluir(agenda.getId());
          
             txtNome.setText(agenda.getNome());
             txtTelefone.setText(agenda.getTelefone());

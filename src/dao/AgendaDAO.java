@@ -123,27 +123,25 @@ public class AgendaDAO{
 	
    }
     
-   public void excluir(Agenda agenda){
+   public void excluir(int id){
       String sqlDelete = "DELETE FROM tb_agenda WHERE id = ?";
       try(Connection conn = ConnectionFactory.obtemConexaoDBAgenda();
     		  PreparedStatement stm = conn.prepareStatement(sqlDelete);){
-         stm.setInt(1, agenda.getId());
+         stm.setInt(1, id);
          stm.execute();
-         //Null atributos
-         agenda.setId(-1);
       }catch(Exception e){
          e.printStackTrace();
       }
    }
    	public void atualizar(Agenda agenda) {
-		String sqlUpdate = "UPDATE tb_agenda SET nome = ?, telefone = ?, endereco = ? WHERE email = ?";
-
+		String sqlUpdate = "UPDATE tb_agenda SET nome = ?, telefone = ?, endereco = ?, email = ? WHERE id = ? ";
 		try (Connection conn = ConnectionFactory.obtemConexaoDBAgenda();
 				PreparedStatement stm = conn.prepareStatement(sqlUpdate);) {
          stm.setString(1, agenda.getNome());
          stm.setString(2, agenda.getTelefone());
          stm.setString(3, agenda.getEndereco());
          stm.setString(4, agenda.getEmail());
+         stm.setInt(5, agenda.getId());
 			stm.execute();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -20,7 +20,7 @@
 	<c:import url="Menu.jsp" />
 	<!-- Container Principal -->
 	<div id="main" class="container">
-		<h3 class="page-header">Alterar Contato #${cliente.id }</h3>
+		<h3 class="page-header">Alterar Contato #${contato.id }</h3>
 
 		<form action="CadastroAgenda.do" method="get">
 
@@ -49,6 +49,7 @@
 						class="form-control" name="email" id="email" required
 						maxlength="60" placeholder="Email obrigatório">
 				</div>
+				<input type="hidden" class="form-control" name="id" value="${contato.id }" >
 			</div>
 			<hr />
 			<div id="actions" class="row">

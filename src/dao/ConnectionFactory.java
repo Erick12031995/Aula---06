@@ -13,7 +13,7 @@ public class ConnectionFactory {
 		}
 	
 	public static Connection obtemConexaoDBAgenda() throws SQLException {
-		return DriverManager.getConnection("jdbc:mysql://localhost:3306/db_agenda?useTimezone=true&serverTimezone=UTC&user=Alunos&password=alunos");
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/db_agenda?useTimezone=true&serverTimezone=UTC&user=root&password=123");
 	}
 	
 }

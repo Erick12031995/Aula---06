@@ -67,8 +67,7 @@
 				</div>
 
 				<div class="col-md-3">
-					<a href="CriarContato.jsp" class="btn btn-primary pull-right h2">Novo
-						Contato</a>
+					<a href="CriarContato.jsp" class="btn btn-primary pull-right h2">Novo Contato</a>
 				</div>
 			</div>
 			<!-- /#top -->

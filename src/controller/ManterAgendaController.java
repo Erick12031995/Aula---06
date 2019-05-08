@@ -28,6 +28,7 @@ public class ManterAgendaController extends HttpServlet {
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String pAcao = request.getParameter("acao");
+		String pId = request.getParameter("id");
 		String pNome = request.getParameter("nome");
 		String pFone = request.getParameter("fone");
 		String pEndereco = request.getParameter("endereco");
@@ -58,12 +59,14 @@ public class ManterAgendaController extends HttpServlet {
 			session.setAttribute("lista", lista);
 			view = request.getRequestDispatcher("ListarContatos.jsp");
 		} else if (pAcao.equals("Excluir")) {
-			agendaS.excluir(agenda);
+			agenda.setId(Integer.parseInt(pId));
+			agendaS.excluir(agenda.getId());
 			ArrayList<Agenda> lista = (ArrayList<Agenda>)session.getAttribute("lista");
 			lista.remove(busca(agenda, lista));
 			session.setAttribute("lista", lista);
 			view = request.getRequestDispatcher("ListarContatos.jsp");			
 		} else if (pAcao.equals("Alterar")) {
+			agenda.setId(Integer.parseInt(pId));
 			agendaS.atualizar(agenda);
 			ArrayList<Agenda> lista = (ArrayList<Agenda>)session.getAttribute("lista");
 			int pos = busca(agenda, lista);
@@ -73,10 +76,12 @@ public class ManterAgendaController extends HttpServlet {
 			request.setAttribute("contato", agenda);
 			view = request.getRequestDispatcher("VisualizarContato.jsp");			
 		} else if (pAcao.equals("Visualizar")) {
+			agenda.setId(Integer.parseInt(pId));
 			agenda = agendaS.pesquisar(agenda.getId());
 			request.setAttribute("contato", agenda);
 			view = request.getRequestDispatcher("VisualizarContato.jsp");		
 		} else if (pAcao.equals("Editar")) {
+			agenda.setId(Integer.parseInt(pId));
 			agenda = agendaS.pesquisar(agenda.getId());
 			request.setAttribute("contato", agenda);
 			view = request.getRequestDispatcher("AlterarContato.jsp");		
