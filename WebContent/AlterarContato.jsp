@@ -15,7 +15,7 @@
 <link href="Resources/css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body>          
 	<!-- Barra superior com os menus de navegação -->
 	<c:import url="Menu.jsp" />
 	<!-- Container Principal -->
@@ -29,7 +29,7 @@
 				<div class="form-group col-md-12">
 					<label for="nome">Nome</label> <input type="text"
 						class="form-control" name="nome" id="nome" required
-						maxlength="100" placeholder="Nome completo">
+						maxlength="100" placeholder="Nome completo" value="${contato.nome }">
 				</div>
 			</div>
 			<div class="row">
@@ -37,17 +37,17 @@
 					<label for="fone">Celular</label> <input type="tel"
 						class="form-control" name="fone" id="fone" maxlength="15"
 						pattern="(?:\(\d{2}\)|\d{2})[- ]?\d{5}[- ]?\d{4}"
-						placeholder="Obrigatorio; (99) 99999-9999">
+						placeholder="Obrigatorio; (99) 99999-9999" value="${contato.telefone }" >
 				</div>
 				<div class="form-group col-md-6">
 					<label for="endereco">Endereço</label> <input class="form-control"
-						name="endereco" id="enderco" required maxlength="60"
-						placeholder="Endereço">
+						name="endereco" id="endereco" required maxlength="60"
+						placeholder="Endereço" value="${contato.endereco }">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="email">E-Mail</label> <input type="email"
 						class="form-control" name="email" id="email" required
-						maxlength="60" placeholder="Email obrigatório">
+						maxlength="60" placeholder="Email obrigatório" value="${contato.email }">
 				</div>
 				<input type="hidden" class="form-control" name="id" value="${contato.id }" >
 			</div>
