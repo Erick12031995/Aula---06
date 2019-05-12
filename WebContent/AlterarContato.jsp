@@ -22,7 +22,7 @@
 	<div id="main" class="container">
 		<h3 class="page-header">Alterar Contato #${contato.id }</h3>
 
-		<form action="CadastroAgenda.do" method="get">
+		<form action="controller.do" method="get">
 
 			<!-- area de campos do form -->
 			<div class="row">
@@ -54,8 +54,8 @@
 			<hr />
 			<div id="actions" class="row">
 				<div class="col-md-12">
-					<button type="submit" class="btn btn-primary" name="acao"
-						value="Alterar">Salvar</button>
+					<button type="submit" class="btn btn-primary" name="command"
+					 value="AlterarContato">Salvar</button>
 					<a href="ListarContatos.jsp" class="btn btn-default">Cancelar</a>
 				</div>
 			</div>

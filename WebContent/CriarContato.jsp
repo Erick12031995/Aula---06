@@ -19,7 +19,7 @@
     <div id="main" class="container">
         <h3 class="page-header">Incluir Contato</h3>
         <!-- Formulario para inclusao de clientes -->
-        <form action="CadastroAgenda.do" method="get">
+        <form action="controller.do" method="get">
         
             <!-- area de campos do form -->
              <div class="row">
@@ -45,7 +45,7 @@
             <hr />
             <div id="actions" class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary" name="acao" value="Criar">Salvar</button>
+                    <button type="submit" class="btn btn-primary" name="command" value="CriarContato">Salvar</button>
                     <a href="ListarContatos.jsp" class="btn btn-default">Cancelar</a>
                 </div>
             </div>

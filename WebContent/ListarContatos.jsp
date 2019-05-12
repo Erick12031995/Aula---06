@@ -31,10 +31,10 @@
 				<div class="modal-body">Deseja realmente excluir este contato?
 				</div>
 				<div class="modal-footer">
-					<form action="CadastroAgenda.do" method="post">
+					<form action="controller.do" method="post">
 						<input type="hidden" name="id" id="id_excluir" />
-						<button type="submit" class="btn btn-primary" name="acao"
-							value="Excluir">Sim</button>
+						<button type="submit" class="btn btn-primary" name="command"
+							value="ExcluirContato">Sim</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
 					</form>
 				</div>
@@ -46,7 +46,7 @@
 	<c:import url="Menu.jsp" />
 	<!-- Container Principal -->
 	<div id="main" class="container">
-		<form action="listar_contatos.do" method="post">
+		<form action="controller.do" method="post">
 			<div id="top" class="row">
 				<div class="col-md-3">
 					<h2>Contatos</h2>
@@ -58,8 +58,8 @@
 							type="text"
 							placeholder="Pesquisar Contatos (deixe vazio para trazer todos)">
 						<span class="input-group-btn">
-							<button class="btn btn-primary" type="submit" name="acao"
-								value="buscar">
+							<button class="btn btn-primary" type="submit" name="command"
+								value="ListarContatosBusca">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
 						</span>
@@ -96,13 +96,9 @@
 									<td>${contato.telefone }</td>
 									<td>${contato.endereco }</td>
 									<td>${contato.email }</td>
-									<td class="actions"><a class="btn btn-success btn-xs"
-										href="CadastroAgenda.do?acao=Visualizar&id=${contato.id }">Visualizar</a>
-										<a class="btn btn-warning btn-xs"
-										href="CadastroAgenda.do?acao=Editar&id=${contato.id }">Editar</a>
-										<button id="btn${contato.id }%>" type="button"
-											class="btn btn-danger btn-xs" data-toggle="modal"
-											data-target="#delete-modal" data-cliente="${contato.id }">Excluir</button>
+									<td class="actions"><a class="btn btn-success btn-xs" href="controller.do?command=VisualizarContato&id=${contato.id }">Visualizar</a>
+										<a class="btn btn-warning btn-xs" href="controller.do?command=EditarContato&id=${contato.id }">Editar</a>
+										<button id="btn${contato.id }%>" type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#delete-modal" data-cliente="${contato.id }">Excluir</button>
 									</td>
 								</tr>
 							</c:forEach>

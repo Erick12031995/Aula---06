@@ -27,9 +27,9 @@
                                 Deseja realmente excluir este contato?
                             </div>
                             <div class="modal-footer">
-                                <form action="CadastroAgenda.do" method="post">
+                                <form action="controller.do" method="post">
                                     <input type="hidden" name="id" value="${contato.id }" />
-                                    <button type="submit" class="btn btn-primary" name="acao" value="Excluir">Sim</button>
+                                    <button type="submit" class="btn btn-primary" name="command" value="ExcluirContato">Sim</button>
                                     <button type="button" class="btn btn-default" data-dismiss="modal">N&atilde;o</button>
                                 </form>
                             </div>
@@ -77,7 +77,7 @@
                     <hr />
                     <div id="actions" class="row">
                         <div class="col-md-12">
-                            <a href="CadastroAgenda.do?acao=Editar&id=${contato.id }" class="btn btn-primary">Editar</a>
+                            <a href="controller.do?command=EditarContato&id=${contato.id }" class="btn btn-primary">Editar</a>
                             <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Excluir</a>
                             <a href="ListarContatos.jsp" class="btn btn-default">Voltar</a>
                         </div>
